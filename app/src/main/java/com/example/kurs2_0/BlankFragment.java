@@ -123,9 +123,12 @@ long timeNitification;
 
                String str = (name.getText().toString())+"%"+(notificationText.getText().toString())
                        +"%"+Long.toString(dateAndTime.getTimeInMillis())+"%"+Integer.toString(1);
-              // long a = dateAndTime.getTi(Calendar.HOUR)+dateAndTime.get(Calendar.MINUTE);
+              toActivity(str);
+               // Activity activity = getActivity();
+               // if (activity != null && !activity.isFinishing() && activity instanceof MainActivity) {
+                    //((MainActivity) activity).GetDatabase();
+             //   }
 
-                toActivity(str);
 
                 getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
 

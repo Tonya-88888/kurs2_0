@@ -40,39 +40,34 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
 
-    boolean  InsertDate(Context ctx,Integer id, String name, String notification, long time, int day){
-DatabaseHelper dbHelper = new DatabaseHelper(ctx);
+    boolean  InsertDate(Context ctx, String name, String notification, long time, int day){
+        DatabaseHelper dbHelper = new DatabaseHelper(ctx);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(HABIT_ID, id);
+
         values.put(HABIT_NAME, name);
         values.put(HABIT_NOTIFICATION, notification);
         values.put(HABIT_TIME, time);
         values.put(HABIT_DAY, day);
         long newRowId = db.insert( TABLE,null, values);
-      if(newRowId == 1) return true;
-      else return false;
+      if(newRowId != 1) return false;
+      else return true;
     }
 
     ArrayList<Habit> GetDate(Context ctx){
        ArrayList<Habit> habit = new ArrayList<>();
         DatabaseHelper dbHelper = new DatabaseHelper(ctx);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Cursor cursor = db.query(
-                TABLE,   // таблица
-                null,            // столбцы
-                null,                  // столбцы для условия WHERE
-                null,                  // значения для условия WHERE
-                null,                  // Don't group the rows
-                null,                  // Don't filter by row groups
-                null);                   // порядок сортировки
+
+        Cursor cursor = db.rawQuery("SELECT * FROM "+TABLE, null);
 
 // Проходим через все ряды
-        Habit tmp = new Habit();
+
         try {
             while (cursor.moveToNext()) {
+                Habit tmp = new Habit();
                 // Используем индекс для получения строки или числа
-                tmp.setId(cursor.getInt(cursor.getColumnIndex(HABIT_ID)));
+
                 tmp.setName(cursor.getString(cursor.getColumnIndex(HABIT_NAME)));
                 tmp.setNotificationText(cursor.getString(cursor.getColumnIndex(HABIT_NOTIFICATION)));
                 tmp.setNotificationTime(cursor.getInt(cursor.getColumnIndex(HABIT_TIME)));
@@ -85,4 +80,5 @@ DatabaseHelper dbHelper = new DatabaseHelper(ctx);
         }
         return habit;
     }
+
 }
