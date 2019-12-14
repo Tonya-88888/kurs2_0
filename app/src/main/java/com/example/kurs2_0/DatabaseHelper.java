@@ -68,6 +68,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 Habit tmp = new Habit();
                 // Используем индекс для получения строки или числа
 
+                tmp.setId(cursor.getInt(cursor.getColumnIndex(HABIT_ID)));
                 tmp.setName(cursor.getString(cursor.getColumnIndex(HABIT_NAME)));
                 tmp.setNotificationText(cursor.getString(cursor.getColumnIndex(HABIT_NOTIFICATION)));
                 tmp.setNotificationTime(cursor.getInt(cursor.getColumnIndex(HABIT_TIME)));
