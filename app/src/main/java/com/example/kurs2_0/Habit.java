@@ -1,18 +1,28 @@
 package com.example.kurs2_0;
 
 public class Habit {
+    private int id;
+
+
+
     private String Name;
     private String NotificationText;
     private long NotificationTime;
     private int Day;
-
+    public Habit(){};
     public Habit(String name, String notificationText, long notificationTime, int day) {
         Name = name;
         NotificationText = notificationText;
         NotificationTime = notificationTime;
         Day = day;
     }
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getName() {
         return Name;
     }

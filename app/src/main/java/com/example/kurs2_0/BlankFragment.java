@@ -2,6 +2,7 @@ package com.example.kurs2_0;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -40,7 +41,7 @@ public class BlankFragment extends Fragment implements View.OnClickListener, Com
     ToggleButton friday;
     ToggleButton saturday;
     ToggleButton sunsday;
-
+long timeNitification;
     Calendar dateAndTime=Calendar.getInstance();
 
     public final static String TAG = "com.example.kurs2_0.BlankFragment";
@@ -95,7 +96,7 @@ public class BlankFragment extends Fragment implements View.OnClickListener, Com
         saturday.setOnCheckedChangeListener(this);
         sunsday.setOnCheckedChangeListener(this);
 
-        notificationText.addTextChangedListener(new TextWatcher() {
+      /*  notificationText.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {}
 
@@ -107,7 +108,7 @@ public class BlankFragment extends Fragment implements View.OnClickListener, Com
                 if(name.getText().length() !=0){
                     add.setEnabled(true);}
             }
-        });
+        });*/
         return v;
     }
 
@@ -120,16 +121,13 @@ public class BlankFragment extends Fragment implements View.OnClickListener, Com
 
             case R.id.addButton:
 
-               /*toActivity((name.getText().toString())+"%"+(notificationText.getText().toString())
-                       +"%"+Long.toString(dateAndTime.getTimeInMillis())+"%"+Integer.toString(1));
-
-                getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();*/
                String str = (name.getText().toString())+"%"+(notificationText.getText().toString())
                        +"%"+Long.toString(dateAndTime.getTimeInMillis())+"%"+Integer.toString(1);
+              // long a = dateAndTime.getTi(Calendar.HOUR)+dateAndTime.get(Calendar.MINUTE);
+
                 toActivity(str);
 
                 getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
-              //  mListener.onOpenFragmentHome(str);
 
                 break;
             case R.id.everyDay:
@@ -202,16 +200,15 @@ public class BlankFragment extends Fragment implements View.OnClickListener, Com
 
 
     // отображаем диалоговое окно для выбора времени
-    public void setTime(View v) {
-
-        new TimePickerDialog(getActivity(), t,
+    public Dialog setTime(View v) {
+       TimePickerDialog time= new TimePickerDialog(getActivity(), t,
                 dateAndTime.get(Calendar.HOUR_OF_DAY),
-                dateAndTime.get(Calendar.MINUTE), true)
-                .show();
+                dateAndTime.get(Calendar.MINUTE), true);
+        time.show();
+        return time;
     }
     // установка начальных даты и времени
     private void setInitialDateTime() {
-
         currentDateTime.setText(DateUtils.formatDateTime(getContext(),
                 dateAndTime.getTimeInMillis(), DateUtils.FORMAT_SHOW_TIME));
     }
@@ -221,19 +218,12 @@ public class BlankFragment extends Fragment implements View.OnClickListener, Com
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
             dateAndTime.set(Calendar.MINUTE, minute);
+            timeNitification  = (hourOfDay*60+minute)*60*1000;
             setInitialDateTime();
         }
     };
 
-    // установка обработчика выбора даты
-    DatePickerDialog.OnDateSetListener d=new DatePickerDialog.OnDateSetListener() {
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            dateAndTime.set(Calendar.YEAR, year);
-            dateAndTime.set(Calendar.MONTH, monthOfYear);
-            dateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            setInitialDateTime();
-        }
-    };
+
 
 
     @Override
