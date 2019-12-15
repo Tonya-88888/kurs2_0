@@ -41,7 +41,7 @@ public class BlankFragment extends Fragment implements View.OnClickListener, Com
     ToggleButton friday;
     ToggleButton saturday;
     ToggleButton sunsday;
-long timeNitification;
+    long timeNitification;
     Calendar dateAndTime=Calendar.getInstance();
 
     public final static String TAG = "com.example.kurs2_0.BlankFragment";
@@ -72,11 +72,8 @@ long timeNitification;
         currentDateTime=(Button)v.findViewById(R.id.timeButton);
         setInitialDateTime();
 
-
         time = (Button)v.findViewById(R.id.timeButton);
         time.setOnClickListener(this);
-
-
 
         everyDay = v.findViewById(R.id.everyDay);
         monday = v.findViewById(R.id.monday);
@@ -97,9 +94,7 @@ long timeNitification;
         sunsday.setOnCheckedChangeListener(this);
 
       /*  notificationText.addTextChangedListener(new TextWatcher() {
-
             public void afterTextChanged(Editable s) {}
-
             public void beforeTextChanged(CharSequence s, int start,
                                           int count, int after) {
             }
@@ -121,13 +116,13 @@ long timeNitification;
 
             case R.id.addButton:
 
-               String str = (name.getText().toString())+"%"+(notificationText.getText().toString())
-                       +"%"+Long.toString(dateAndTime.getTimeInMillis())+"%"+Integer.toString(1);
-              toActivity(str);
-               // Activity activity = getActivity();
-               // if (activity != null && !activity.isFinishing() && activity instanceof MainActivity) {
-                    //((MainActivity) activity).GetDatabase();
-             //   }
+                String str = (name.getText().toString())+"%"+(notificationText.getText().toString())
+                        +"%"+Long.toString(dateAndTime.getTimeInMillis())+"%"+Integer.toString(1);
+                toActivity(str);
+                // Activity activity = getActivity();
+                // if (activity != null && !activity.isFinishing() && activity instanceof MainActivity) {
+                //((MainActivity) activity).GetDatabase();
+                //   }
 
 
                 getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
@@ -141,17 +136,7 @@ long timeNitification;
                 }
         }
     }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentAddDataListener) {
-            mListener = (OnFragmentAddDataListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragment1DataListener");
-        }
-    }
+    
     public void toActivity(String data) {
         Activity activity = getActivity();
         if (activity != null && !activity.isFinishing() && activity instanceof MainActivity) {
@@ -204,7 +189,7 @@ long timeNitification;
 
     // отображаем диалоговое окно для выбора времени
     public Dialog setTime(View v) {
-       TimePickerDialog time= new TimePickerDialog(getActivity(), t,
+        TimePickerDialog time= new TimePickerDialog(getActivity(), t,
                 dateAndTime.get(Calendar.HOUR_OF_DAY),
                 dateAndTime.get(Calendar.MINUTE), true);
         time.show();
@@ -225,8 +210,6 @@ long timeNitification;
             setInitialDateTime();
         }
     };
-
-
 
 
     @Override

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.ContentValues;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
 
@@ -54,7 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
       else return true;
     }
 
-    ArrayList<Habit> GetDate(Context ctx){
+    Collection<Habit> GetDate(Context ctx){
        ArrayList<Habit> habit = new ArrayList<>();
         DatabaseHelper dbHelper = new DatabaseHelper(ctx);
         SQLiteDatabase db = dbHelper.getWritableDatabase();

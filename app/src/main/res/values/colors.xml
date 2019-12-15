@@ -1,6 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-</resources>
+<?xml version="1.0" encoding="utf-8"?><resources>    <color name="colorPrimary">#008577</color>    <color name="colorPrimaryDark">#00574B</color>    <color name="colorAccent">#D81B60</color>    <color name="PincNectar">#D8ABB7</color>    <color name="PaleRose">#EDD5D8</color>    <color name="RoseWhite">#FCF4F0</color>    <color name="FrostyPine">#C6CEBE</color>    <color name="Text">#B7BAC2</color></resources>

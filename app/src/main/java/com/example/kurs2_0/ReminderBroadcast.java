@@ -11,7 +11,7 @@ public class ReminderBroadcast extends BroadcastReceiver {
 @Override
     public void onReceive(Context ctx, Intent intent) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(ctx, "channel_id")
-                .setSmallIcon(R.drawable.common_google_signin_btn_icon_dark)
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle("My notification")
                 .setContentText("Much longer text that cannot fit one line...")
                 // .setContentIntent(pi)
